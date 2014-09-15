@@ -15,6 +15,7 @@ package
 		
 		//Arrays
 		private var cities:Array = [];
+		private var missiles:Array = [];
 		
 		//scripts
 		private var enemyMissile: Enemy;
@@ -30,22 +31,24 @@ package
 		background.y = 250;
 		addChild(background);
 		
-		//adds the cities to the game
-		function spawnCity()
-		{
-			var city : sCircle = new sCircle();
-			city.x = Math.random() * stage.stageWidth;
-			city.y = Math.random() * stage.stageHeight;
-			addChild(city);
-			city.push(sCircle);
-		
-		}
-		
 		for (var i : int = 0; i < totalCities; i++ )
 		{
-			spawnCity();
+			spawnCity(i);
 		}
 		
+		var testing:Missile = new Missile(cities[Math.floor(Math.random() * cities.length)]);
+		addChild(testing);
+		
+	}
+	
+	//adds the cities to the game
+	private function spawnCity(i:int):void
+		{
+			var city : sCircle = new sCircle();
+			city.x = stage.stageWidth / 6 * i + 65; 
+			city.y = 400;
+			addChild(city);
+			cities.push(city);
 		}
 		
 	}
